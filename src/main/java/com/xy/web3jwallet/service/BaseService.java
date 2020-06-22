@@ -32,4 +32,6 @@ public interface BaseService {
      * @return
      */
     HttpService getService();
+
+
 }

@@ -12,6 +12,7 @@ import org.web3j.protocol.core.methods.request.Transaction;
 import org.web3j.protocol.core.methods.response.EthAccounts;
 import org.web3j.protocol.core.methods.response.EthGasPrice;
 import org.web3j.protocol.core.methods.response.EthSendTransaction;
+import org.web3j.protocol.geth.Geth;
 
 import java.io.IOException;
 import java.math.BigInteger;
@@ -32,6 +33,7 @@ public class AdminAccountServiceImpl implements AdminAccountService {
     @Override
     public BigInteger getGasPrice() {
         Web3j web3j=baseService.initWeb3j();
+
         EthGasPrice ethGasPrice=new EthGasPrice();
         try {
             ethGasPrice=web3j.ethGasPrice().sendAsync().get();
@@ -73,6 +75,7 @@ public class AdminAccountServiceImpl implements AdminAccountService {
     @Override
     public String newAccount(String password) {
         Admin admin = baseService.initAdmin();
+
         Request<?, NewAccountIdentifier> request = admin.personalNewAccount(password);
         NewAccountIdentifier result = null;
         try {
