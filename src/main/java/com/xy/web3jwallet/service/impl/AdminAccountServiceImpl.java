@@ -37,9 +37,7 @@ public class AdminAccountServiceImpl implements AdminAccountService {
         EthGasPrice ethGasPrice=new EthGasPrice();
         try {
             ethGasPrice=web3j.ethGasPrice().sendAsync().get();
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        } catch (ExecutionException e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
         return ethGasPrice.getGasPrice();
@@ -80,7 +78,7 @@ public class AdminAccountServiceImpl implements AdminAccountService {
         NewAccountIdentifier result = null;
         try {
             result = request.send();
-        } catch (IOException e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
         return result.getAccountId();
