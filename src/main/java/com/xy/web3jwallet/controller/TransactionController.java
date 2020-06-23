@@ -38,12 +38,12 @@ public class TransactionController {
                         transaction_model.getData());
 
         String hash = transactionService.ethSendTransaction(transaction);
-        if (!hash.equals("0x000000000000000000000000000000000000000000000000000000000000000")) {
+        if (!hash.equals("0x0000000000000000000000000000000000000000000000000000000000000000")) {
             commonResult = CommonResult.success(hash);
-            //LOGGER.debug("createStudent success:{}", transaction);
+            //LOGGER.debug("");
         } else {
             commonResult = CommonResult.failed("操作失败");
-            //LOGGER.debug("createStudent failed:{}", transaction);
+            //LOGGER.debug("");
         }
         return commonResult;
     }

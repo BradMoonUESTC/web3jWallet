@@ -15,7 +15,7 @@ import org.web3j.protocol.core.filters.PendingTransactionFilter;
 import org.web3j.protocol.core.methods.request.EthFilter;
 import org.web3j.protocol.core.methods.response.EthBlockNumber;
 import org.web3j.protocol.core.methods.response.EthLog;
-import rx.Subscription;
+import org.web3j.protocol.core.methods.response.Transaction;
 
 import java.io.IOException;
 import java.math.BigInteger;
@@ -36,20 +36,20 @@ public class WatcherConfig {
         return baseService.initWeb3j();
     }
 
-//    /**
-//     * 单纯的挂起交易的监视器
-//     * @param web3j
-//     * @return
-//     * @throws IOException
-//     */
-//    @Bean
-//    @Scope("prototype")
-//    @Autowired
-//    public EthFilter ethFilter(Web3j web3j) throws IOException {
-//
-//        PendingTransactionFilter pendingTransactionFilter=new PendingTransactionFilter(web3j, Callback);
-//        Request<?, EthBlockNumber> request = web3j.ethBlockNumber();//获取最新区块的请求
-//        BigInteger fromblock = request.send().getBlockNumber();//发起请求，获取最新区块的blocknumber
-//        return new EthFilter(DefaultBlockParameter.valueOf(fromblock),DefaultBlockParameterName.LATEST);
-//    }
+    /**
+     * 单纯的挂起交易的监视器
+     * @param web3j
+     * @return
+     * @throws IOException
+     */
+    @Bean
+    @Scope("prototype")
+    @Autowired
+    public EthFilter ethFilter(Web3j web3j) throws IOException {
+        EthFilter ethFilter=new EthFilter(DefaultBlockParameterName.EARLIEST,DefaultBlockParameterName.LATEST,"0x59eb99d9f6fa5d3d2229effcb811ac574708248d");
+        EthLog ethLog = web3j.ethGetLogs(ethFilter).send();
+        //web3j.ethBlockHashObservable()
+        return ethFilter(web3j);
+
+    }
 }

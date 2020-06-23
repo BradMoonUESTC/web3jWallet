@@ -1,6 +1,7 @@
 package com.xy.web3jwallet.service;
 
 import org.web3j.protocol.core.methods.response.EthBlock;
+import org.web3j.protocol.core.methods.response.EthLog;
 
 public interface WatchTransactionService {
 
@@ -9,6 +10,12 @@ public interface WatchTransactionService {
      * @return
      */
     EthBlock.Block ScheduledCheckBlock();
+
+    /**
+     * 轮询过滤器的日志
+     * @return
+     */
+    EthLog ScheduledCheckFilterLog();
 }
 
 

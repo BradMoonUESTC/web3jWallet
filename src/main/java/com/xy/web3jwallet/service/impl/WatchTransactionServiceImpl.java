@@ -9,7 +9,10 @@ import org.web3j.protocol.Web3j;
 import org.web3j.protocol.core.DefaultBlockParameter;
 import org.web3j.protocol.core.DefaultBlockParameterName;
 import org.web3j.protocol.core.DefaultBlockParameterNumber;
+import org.web3j.protocol.core.Request;
+import org.web3j.protocol.core.methods.request.EthFilter;
 import org.web3j.protocol.core.methods.response.EthBlock;
+import org.web3j.protocol.core.methods.response.EthLog;
 
 import java.io.IOException;
 import java.math.BigInteger;
@@ -28,21 +31,37 @@ public class WatchTransactionServiceImpl implements WatchTransactionService {
      */
     @Override
     @Scheduled(cron = "0/5 * * * * MON-SAT")
-    //每隔5秒轮询一次
+    //每隔5秒轮询一次最新块
     public EthBlock.Block ScheduledCheckBlock() {
         Web3j web3j=baseService.initWeb3j();
         EthBlock ethBlock = null;
         try {
-            BigInteger blocknumber=web3j.ethBlockNumber().send().getBlockNumber();
-            //获取最新的blocknumber
-            System.out.println(blocknumber);
-            DefaultBlockParameter defaultBlockParameter = new DefaultBlockParameterNumber(blocknumber);
-
-            ethBlock=web3j.ethGetBlockByNumber(defaultBlockParameter,false).sendAsync().get();
-            System.out.println(ethBlock.getBlock().getHash());
+            ethBlock=web3j.ethGetBlockByNumber(DefaultBlockParameterName.LATEST,false).sendAsync().get();
         } catch (Exception e) {
             e.printStackTrace();
         }
         return ethBlock.getBlock();
+    }
+
+    /**
+     * 轮询过滤器的日志
+     *
+     * @return
+     */
+    @Override
+    @Scheduled(cron = "0/5 * * * * MON-SAT")
+    public EthLog ScheduledCheckFilterLog() {
+        Web3j web3j=baseService.initWeb3j();
+        EthLog ethLog=new EthLog();
+
+        EthFilter ethFilter=new EthFilter(DefaultBlockParameterName.EARLIEST,DefaultBlockParameterName.LATEST,"0x59eb99d9f6fa5d3d2229effcb811ac574708248d");
+        Request<?, EthLog> request=web3j.ethGetLogs(ethFilter);
+        try {
+            ethLog = request.send();
+            System.out.println(ethLog.getLogs());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return ethLog;
     }
 }

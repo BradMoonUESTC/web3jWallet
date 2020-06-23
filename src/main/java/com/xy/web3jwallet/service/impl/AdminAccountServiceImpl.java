@@ -2,6 +2,7 @@ package com.xy.web3jwallet.service.impl;
 
 import com.xy.web3jwallet.service.AdminAccountService;
 import com.xy.web3jwallet.service.BaseService;
+import okhttp3.RequestBody;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.web3j.protocol.Web3j;
@@ -17,6 +18,7 @@ import org.web3j.protocol.geth.Geth;
 import java.io.IOException;
 import java.math.BigInteger;
 import java.util.List;
+import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.ExecutionException;
 
 @Service
@@ -35,16 +37,14 @@ public class AdminAccountServiceImpl implements AdminAccountService {
         Web3j web3j=baseService.initWeb3j();
 
         EthGasPrice ethGasPrice=new EthGasPrice();
+        Request<?, EthGasPrice> request=web3j.ethGasPrice();
         try {
-            ethGasPrice=web3j.ethGasPrice().sendAsync().get();
+            ethGasPrice=request.sendAsync().get();
         } catch (Exception e) {
             e.printStackTrace();
         }
         return ethGasPrice.getGasPrice();
     }
-
-
-
     /**
      * 获取所有账户列表
      *
@@ -55,10 +55,12 @@ public class AdminAccountServiceImpl implements AdminAccountService {
         Web3j web3j = baseService.initWeb3j();
 
         EthAccounts result = new EthAccounts();
+        Request<?, EthAccounts> request=web3j.ethAccounts();
+
         try {
-            result = web3j.ethAccounts().sendAsync().get();//异步请求
+            result = request.sendAsync().get();//异步请求
         } catch (Exception e) {
-            e.printStackTrace();
+            System.out.println(e);
         }
 
         return result.getAccounts();
@@ -75,7 +77,7 @@ public class AdminAccountServiceImpl implements AdminAccountService {
         Admin admin = baseService.initAdmin();
 
         Request<?, NewAccountIdentifier> request = admin.personalNewAccount(password);
-        NewAccountIdentifier result = null;
+        NewAccountIdentifier result = new NewAccountIdentifier();
         try {
             result = request.send();
         } catch (Exception e) {
