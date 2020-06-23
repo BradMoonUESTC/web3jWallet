@@ -16,7 +16,7 @@ public class TransactionController {
     TransactionService transactionService;
 
     /**
-     *
+     * 转账操作
      * @param transaction_model
      * @return
      */
@@ -49,7 +49,7 @@ public class TransactionController {
     }
 
     /**
-     *
+     * 根据hashcode获取transaction
      * @param hashcode
      * @return
      */

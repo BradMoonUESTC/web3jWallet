@@ -2,23 +2,23 @@ package com.xy.web3jwallet.demo;
 
 import com.xy.web3jwallet.service.BaseService;
 import org.junit.jupiter.api.Test;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.web3j.crypto.Credentials;
-import org.web3j.crypto.WalletUtils;
 import org.web3j.protocol.Web3j;
-import org.web3j.protocol.core.methods.response.Transaction;
-import org.web3j.protocol.core.methods.response.TransactionReceipt;
-import org.web3j.tx.Transfer;
-import org.web3j.utils.Convert;
 
-import java.math.BigDecimal;
 
 @SpringBootTest
 class DemoApplicationTests {
 
     @Test
     void contextLoads() {
+        WatchTest();
+    }
+
+    @Test
+    void WatchEntrance(){
+        WatchTest();
     }
 
     @Autowired
@@ -28,14 +28,18 @@ class DemoApplicationTests {
         Web3j web3j=baseService.initWeb3j();
 
         /**
-         * Create an Flowable to emit block hashes.
-         * Returns:
-         * a instance that emits all new block hashes
-         * as new blocks are created on the blockchainFlowable
+         *  Create an instance
+         *  that emits newly created blocks
+         *  on the blockchain.Flowable
          *
-         *
+         * 当创建出一个新区块时，创建这个区块的实例，放在Flowable中
+         * 后面的subscribe为进行广播
+         * true表示返回的是这个区块上的所有transaction的信息
+         * false表示只返回区块的hash
          */
-        //Observable<Transaction> transactionObservable = web3j.transactionObservable();
+
+
+
 
     }
 

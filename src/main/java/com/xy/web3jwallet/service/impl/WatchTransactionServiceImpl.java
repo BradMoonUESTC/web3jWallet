@@ -30,7 +30,7 @@ public class WatchTransactionServiceImpl implements WatchTransactionService {
      * @return
      */
     @Override
-    @Scheduled(cron = "0/5 * * * * MON-SAT")
+    //@Scheduled(cron = "0/5 * * * * MON-SAT")
     //每隔5秒轮询一次最新块
     public EthBlock.Block ScheduledCheckBlock() {
         Web3j web3j=baseService.initWeb3j();
@@ -49,7 +49,7 @@ public class WatchTransactionServiceImpl implements WatchTransactionService {
      * @return
      */
     @Override
-    @Scheduled(cron = "0/5 * * * * MON-SAT")
+    //@Scheduled(cron = "0/5 * * * * MON-SAT")
     public EthLog ScheduledCheckFilterLog() {
         Web3j web3j=baseService.initWeb3j();
         EthLog ethLog=new EthLog();
