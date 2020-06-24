@@ -27,22 +27,22 @@ contract Ballot {
     // 一个 `Proposal` 结构类型的动态数组
     Proposal[] public proposals;
 
-    event event_createproposal(bytes2[4] _proposalNames,address _proposaler);
+    event event_createproposal(bytes2[4] _proposalNames, address _proposaler);
     event event_giveright(address _voter);
-    event event_voteaction(uint _proposal,address _voter);
+    event event_voteaction(uint _proposal, address _voter);
 
     /// 为 `proposalNames` 中的每个提案，创建一个新的（投票）表决
     constructor() public {
-        bytes2[4] memory proposalNames= [bytes2(0xa000),bytes2(0xb000),bytes2(0xc000),bytes2(0xd000)];
+        bytes2[4] memory proposalNames = [bytes2(0xa000), bytes2(0xb000), bytes2(0xc000), bytes2(0xd000)];
         chairperson = msg.sender;
         voters[chairperson].weight = 1;
-        emit event_createproposal(proposalNames,chairperson);
+        emit event_createproposal(proposalNames, chairperson);
         //对于提供的每个提案名称，
         //创建一个新的 Proposal 对象并把它添加到数组的末尾。
         for (uint i = 0; i < proposalNames.length; i++) {
             proposals.push(Proposal({
-                name: proposalNames[i],
-                voteCount: 0
+                name : proposalNames[i],
+                voteCount : 0
                 }));
         }
     }
@@ -58,7 +58,7 @@ contract Ballot {
             !voters[voter].voted,
             "被授权者已经投过票了 "
         );
-        require(voters[voter].weight == 0,"此人已经有投票权了，不能重复赋权");
+        require(voters[voter].weight == 0, "此人已经有投票权了，不能重复赋权");
         voters[voter].weight = 1;
         emit event_giveright(voter);
 
@@ -70,7 +70,7 @@ contract Ballot {
         sender.voted = true;
         sender.vote = proposal;
         proposals[proposal].voteCount += sender.weight;
-        emit event_voteaction(proposal,msg.sender);
+        emit event_voteaction(proposal, msg.sender);
 
     }
 

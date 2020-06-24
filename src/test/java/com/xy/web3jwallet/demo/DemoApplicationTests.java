@@ -2,7 +2,6 @@ package com.xy.web3jwallet.demo;
 
 import com.xy.web3jwallet.service.BaseService;
 import org.junit.jupiter.api.Test;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.web3j.protocol.Web3j;
@@ -11,21 +10,22 @@ import org.web3j.protocol.Web3j;
 @SpringBootTest
 class DemoApplicationTests {
 
+    @Autowired
+    BaseService baseService;
+
     @Test
     void contextLoads() {
         WatchTest();
     }
 
     @Test
-    void WatchEntrance(){
+    void WatchEntrance() {
         WatchTest();
     }
 
-    @Autowired
-    BaseService baseService;
     @Test
-    void WatchTest(){
-        Web3j web3j=baseService.initWeb3j();
+    void WatchTest() {
+        Web3j web3j = baseService.initWeb3j();
 
         /**
          *  Create an instance
@@ -37,8 +37,6 @@ class DemoApplicationTests {
          * true表示返回的是这个区块上的所有transaction的信息
          * false表示只返回区块的hash
          */
-
-
 
 
     }

@@ -1,6 +1,5 @@
 package com.xy.web3jwallet.component;
 
-import com.sun.deploy.trace.Trace;
 import com.xy.web3jwallet.config.EthFilterConfig;
 import com.xy.web3jwallet.service.BaseService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,19 +9,14 @@ import org.springframework.stereotype.Component;
 import org.web3j.abi.EventEncoder;
 import org.web3j.abi.EventValues;
 import org.web3j.abi.TypeReference;
-import org.web3j.abi.datatypes.*;
-import org.web3j.abi.datatypes.generated.Bytes2;
+import org.web3j.abi.datatypes.Address;
+import org.web3j.abi.datatypes.Event;
+import org.web3j.abi.datatypes.Utf8String;
 import org.web3j.protocol.Web3j;
 import org.web3j.protocol.core.methods.request.EthFilter;
-import org.web3j.protocol.core.methods.response.TransactionReceipt;
-import org.web3j.protocol.websocket.events.Log;
-import org.web3j.protocol.websocket.events.Notification;
 import org.web3j.tx.Contract;
 
-import java.math.BigInteger;
-import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.List;
 
 @Component
 public class EventWatcher implements ApplicationRunner {
@@ -35,14 +29,16 @@ public class EventWatcher implements ApplicationRunner {
 
     @Override
     public void run(ApplicationArguments args) throws Exception {
-        Web3j web3j=baseService.initWeb3j();
-        EthFilter ethFilter= ethFilterConfig.ethFilter();
+        Web3j web3j = baseService.initWeb3j();
+        EthFilter ethFilter = ethFilterConfig.ethFilter();
 
         Event event = new Event("senddata",
                 Arrays.asList(
-                        new TypeReference<Address>() {},
-                        new TypeReference<Utf8String>() {}
-                        ));
+                        new TypeReference<Address>() {
+                        },
+                        new TypeReference<Utf8String>() {
+                        }
+                ));
 
         ethFilter.addSingleTopic(EventEncoder.encode(event));
         web3j.ethLogFlowable(ethFilter).subscribe(log -> {
@@ -59,9 +55,9 @@ public class EventWatcher implements ApplicationRunner {
 
         //单纯的以log订阅事件
         /**
-        web3j.ethLogFlowable(ethFilter).subscribe(event->{
-            System.out.println(event.getAddress());
-        });
-        */
+         web3j.ethLogFlowable(ethFilter).subscribe(event->{
+         System.out.println(event.getAddress());
+         });
+         */
     }
 }
