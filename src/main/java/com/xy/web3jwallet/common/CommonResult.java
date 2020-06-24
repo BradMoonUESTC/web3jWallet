@@ -2,7 +2,8 @@ package com.xy.web3jwallet.common;
 
 /**
  * 通用返回对象
- * Created by macro on 2019/4/19.
+ * fork from http://www.macrozheng.com.
+ * 2020-6
  */
 public class CommonResult<T> {
     private long code;

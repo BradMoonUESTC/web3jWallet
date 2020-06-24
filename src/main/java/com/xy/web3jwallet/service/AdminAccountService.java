@@ -15,10 +15,10 @@ public interface AdminAccountService {
     /**
      * 创建新账户
      *
-     * @param password
+     * @param _password_
      * @return
      */
-    String newAccount(String password);
+    String newAccount(String _password_);
 
     /**
      * 获取gasprice

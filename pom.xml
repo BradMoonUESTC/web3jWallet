@@ -45,6 +45,8 @@
             <artifactId>core</artifactId>
             <version>4.5.11</version>
         </dependency>
+        <!--这里坑，4.5.12开始，web3j更新了okhttp
+        原有的大部分方法都会出错（nosuchmethod)，暂时还没看具体因为什么-->
         <dependency>
             <groupId>org.web3j</groupId>
             <artifactId>geth</artifactId>

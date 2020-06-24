@@ -30,14 +30,14 @@ public class TransactionServiceImpl implements TransactionService {
     /**
      * 发送转账事务
      *
-     * @param transaction
+     * @param _transaction_
      * @return transaction的hash值
      */
     @Override
-    public String ethSendTransaction(Transaction transaction) {
+    public String ethSendTransaction(Transaction _transaction_) {
         Web3j web3j = baseService.initWeb3j();
         String transactionHash = "0x0000000000000000000000000000000000000000000000000000000000000000";
-        Request<?, EthSendTransaction> request = web3j.ethSendTransaction(transaction);
+        Request<?, EthSendTransaction> request = web3j.ethSendTransaction(_transaction_);
         try {
             transactionHash = request.send().getTransactionHash();
         } catch (IOException e) {
@@ -46,11 +46,17 @@ public class TransactionServiceImpl implements TransactionService {
         return transactionHash;
     }
 
+    /**
+     * 通过hashcode获取transaction相关信息
+     *
+     * @param _hashcode_
+     * @return
+     */
     @Override
-    public EthTransaction getTransactionByHash(String hashcode) {
+    public EthTransaction getTransactionByHash(String _hashcode_) {
         Web3j web3j = baseService.initWeb3j();
         EthTransaction ethTransaction = new EthTransaction();
-        Request<?, EthTransaction> request = web3j.ethGetTransactionByHash(hashcode);
+        Request<?, EthTransaction> request = web3j.ethGetTransactionByHash(_hashcode_);
         try {
             ethTransaction = request.sendAsync().get();
         } catch (Exception e) {
@@ -71,7 +77,7 @@ public class TransactionServiceImpl implements TransactionService {
      */
 
     @Override
-    @Scheduled(cron = "0/10 * * * * MON-SAT")
+    //@Scheduled(cron = "0/10 * * * * MON-SAT")
     //暂定每10秒
     public void ScheduledSendTransaction() {
         Web3j web3j = baseService.initWeb3j();

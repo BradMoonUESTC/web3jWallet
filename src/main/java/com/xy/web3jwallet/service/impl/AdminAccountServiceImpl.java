@@ -63,14 +63,14 @@ public class AdminAccountServiceImpl implements AdminAccountService {
     /**
      * 创建新账户
      *
-     * @param password
+     * @param _password_
      * @return
      */
     @Override
-    public String newAccount(String password) {
+    public String newAccount(String _password_) {
         Admin admin = baseService.initAdmin();
 
-        Request<?, NewAccountIdentifier> request = admin.personalNewAccount(password);
+        Request<?, NewAccountIdentifier> request = admin.personalNewAccount(_password_);
         NewAccountIdentifier result = new NewAccountIdentifier();
         try {
             result = request.send();

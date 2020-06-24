@@ -2,7 +2,8 @@ package com.xy.web3jwallet.common;
 
 /**
  * 枚举了一些常用API操作码
- * Created by macro on 2019/4/19.
+ * fork from http://www.macrozheng.com.
+ * 2020-6
  */
 public enum ResultCode implements com.xy.web3jwallet.common.IErrorCode {
     SUCCESS(200, "操作成功"),

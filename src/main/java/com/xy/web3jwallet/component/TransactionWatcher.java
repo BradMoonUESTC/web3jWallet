@@ -6,6 +6,7 @@ import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.stereotype.Component;
 import org.web3j.protocol.Web3j;
+import org.web3j.protocol.core.methods.response.Transaction;
 
 @Component
 public class TransactionWatcher implements ApplicationRunner {
@@ -32,10 +33,10 @@ public class TransactionWatcher implements ApplicationRunner {
         /**
          * 4.0以上版本写法_转账监听
          */
-        web3j.transactionFlowable().subscribe(transaction -> {
-            System.out.println(transaction.getHash());
-
-        });
+//        web3j.transactionFlowable().subscribe(transaction -> {
+//            System.out.println(transaction.getHash());
+//
+//        });
 
         /**
          * 4.0以下的版本写法_转账监听
