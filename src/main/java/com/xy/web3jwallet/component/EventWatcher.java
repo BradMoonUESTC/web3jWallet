@@ -18,6 +18,9 @@ import org.web3j.tx.Contract;
 
 import java.util.Arrays;
 
+/**
+ * 事件监控
+ */
 @Component
 public class EventWatcher implements ApplicationRunner {
 

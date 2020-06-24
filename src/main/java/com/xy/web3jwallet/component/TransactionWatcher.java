@@ -7,6 +7,9 @@ import org.springframework.boot.ApplicationRunner;
 import org.springframework.stereotype.Component;
 import org.web3j.protocol.Web3j;
 
+/**
+ * 简单的转账监控
+ */
 @Component
 public class TransactionWatcher implements ApplicationRunner {
 

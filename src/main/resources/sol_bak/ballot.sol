@@ -27,6 +27,7 @@ contract Ballot {
     // 一个 `Proposal` 结构类型的动态数组
     Proposal[] public proposals;
 
+    //三个事件分别发射，分别是创建提案，给予权限，投票
     event event_createproposal(bytes2[4] _proposalNames, address _proposaler);
     event event_giveright(address _voter);
     event event_voteaction(uint _proposal, address _voter);

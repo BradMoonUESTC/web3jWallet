@@ -3,6 +3,7 @@ package com.xy.web3jwallet.service.impl;
 import com.xy.web3jwallet.service.BaseService;
 import com.xy.web3jwallet.service.WatchTransactionService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 import org.web3j.protocol.Web3j;
 import org.web3j.protocol.core.DefaultBlockParameterName;
@@ -25,7 +26,7 @@ public class WatchTransactionServiceImpl implements WatchTransactionService {
      * @return
      */
     @Override
-    //@Scheduled(cron = "0/5 * * * * MON-SAT")
+    @Scheduled(cron = "0/5 * * * * MON-SAT")
     //每隔5秒轮询一次最新块
     public EthBlock.Block ScheduledCheckBlock() {
         Web3j web3j = baseService.initWeb3j();

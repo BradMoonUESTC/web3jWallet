@@ -76,7 +76,7 @@ public class TransactionServiceImpl implements TransactionService {
      */
 
     @Override
-    //@Scheduled(cron = "0/10 * * * * MON-SAT")
+    @Scheduled(cron = "0/10 * * * * MON-SAT")
     //暂定每10秒
     public void ScheduledSendTransaction() {
         Web3j web3j = baseService.initWeb3j();
