@@ -1,9 +1,6 @@
 package com.xy.web3jwallet.component;
 
 import com.xy.web3jwallet.service.BaseService;
-
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
@@ -19,7 +16,7 @@ public class TransactionWatcher implements ApplicationRunner {
 
     @Override
     public void run(ApplicationArguments args) throws Exception {
-        Web3j web3j=baseService.initWeb3j();
+        Web3j web3j = baseService.initWeb3j();
         System.out.println("启动监听");
 
         /**

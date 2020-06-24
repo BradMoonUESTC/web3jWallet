@@ -1,7 +1,6 @@
 package com.xy.web3jwallet.service.impl;
 
 import com.xy.web3jwallet.service.BaseService;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.web3j.protocol.Web3j;
 import org.web3j.protocol.admin.Admin;
@@ -12,11 +11,11 @@ import org.web3j.protocol.http.HttpService;
 public class BaseServiceImpl implements BaseService {
 
     //@Value("${baseservice.url}")
-    private static String URL="http://127.0.0.1:8545";
+    private static String URL = "http://127.0.0.1:8545";
 
 
     /**
-     * 初始化web3j普通api调用
+     * 初始化web3j
      *
      * @return web3j
      */
@@ -26,7 +25,8 @@ public class BaseServiceImpl implements BaseService {
     }
 
     /**
-     * 初始化personal级别的操作对象
+     * 初始化geth
+     *
      * @return Geth
      */
     @Override
@@ -35,7 +35,8 @@ public class BaseServiceImpl implements BaseService {
     }
 
     /**
-     * 初始化admin级别操作的对象
+     * 初始化admin
+     *
      * @return Admin
      */
     @Override
@@ -45,6 +46,7 @@ public class BaseServiceImpl implements BaseService {
 
     /**
      * 通过http连接到geth节点
+     *
      * @return
      */
     @Override

@@ -1,12 +1,11 @@
 package com.xy.web3jwallet.controller;
 
 import com.xy.web3jwallet.common.CommonResult;
-import com.xy.web3jwallet.mbg.model.Transaction;
 import com.xy.web3jwallet.service.AdminAccountService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.*;
-import org.web3j.crypto.Hash;
-import org.web3j.protocol.Web3j;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RestController;
 
 import java.math.BigInteger;
 import java.util.List;
@@ -23,18 +22,18 @@ public class AccountController {
     AdminAccountService adminAccountService;
 
     @GetMapping(value = "/listAll")
-    public CommonResult<List<String>> getAccounts(){
+    public CommonResult<List<String>> getAccounts() {
         return CommonResult.success(adminAccountService.getEthAccounts());
     }
 
-    @GetMapping(value="/newAccount/{pwd}")
-    public CommonResult<String> createAccount(@PathVariable("pwd") String pwd){
+    @GetMapping(value = "/newAccount/{pwd}")
+    public CommonResult<String> createAccount(@PathVariable("pwd") String pwd) {
         return CommonResult.success(adminAccountService.newAccount(pwd));
 
     }
 
     @GetMapping(value = "/gasprice")
-    public CommonResult<BigInteger> getGasPrice(){
+    public CommonResult<BigInteger> getGasPrice() {
         return CommonResult.success(adminAccountService.getGasPrice());
     }
 

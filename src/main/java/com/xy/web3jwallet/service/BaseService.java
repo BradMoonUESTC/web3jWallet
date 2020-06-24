@@ -17,18 +17,21 @@ public interface BaseService {
 
     /**
      * 初始化personal级别的操作对象
+     *
      * @return Geth
      */
     Geth initGeth();
 
     /**
      * 初始化admin级别操作的对象
+     *
      * @return Admin
      */
     Admin initAdmin();
 
     /**
      * 通过http连接到geth节点
+     *
      * @return
      */
     HttpService getService();

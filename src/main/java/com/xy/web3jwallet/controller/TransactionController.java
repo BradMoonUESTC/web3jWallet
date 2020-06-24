@@ -17,6 +17,7 @@ public class TransactionController {
 
     /**
      * 转账操作
+     *
      * @param transaction_model
      * @return
      */
@@ -24,10 +25,10 @@ public class TransactionController {
     @ResponseBody
     public CommonResult<String> sendTransaction(@RequestBody Transaction transaction_model) {
         /**
-         * 这里的transaction_model形参使用了自有类的实例，目的是为了对用户输入进行自定义的控制或者判断
+         * 这里的transaction_model形参暂时使用了自有类的实例，考虑后面可以在切面搞点东西
          */
         CommonResult commonResult;
-        org.web3j.protocol.core.methods.request.Transaction transaction=
+        org.web3j.protocol.core.methods.request.Transaction transaction =
                 new org.web3j.protocol.core.methods.request.Transaction(
                         transaction_model.getFrom(),
                         transaction_model.getNonce(),
@@ -50,13 +51,14 @@ public class TransactionController {
 
     /**
      * 根据hashcode获取transaction
+     *
      * @param hashcode
      * @return
      */
     @GetMapping(value = "/gettransaction/{hashcode}")
-    public CommonResult<Optional<org.web3j.protocol.core.methods.response.Transaction>> getTransactionByHashCode(@PathVariable("hashcode") String hashcode){
-        EthTransaction ethTransaction=transactionService.getTransactionByHash(hashcode);
-        Optional<org.web3j.protocol.core.methods.response.Transaction> transaction=ethTransaction.getTransaction();
+    public CommonResult<Optional<org.web3j.protocol.core.methods.response.Transaction>> getTransactionByHashCode(@PathVariable("hashcode") String hashcode) {
+        EthTransaction ethTransaction = transactionService.getTransactionByHash(hashcode);
+        Optional<org.web3j.protocol.core.methods.response.Transaction> transaction = ethTransaction.getTransaction();
         return CommonResult.success(transaction);
     }
 
