@@ -4,6 +4,7 @@ import com.xy.web3jwallet.service.AdminAccountService;
 import com.xy.web3jwallet.service.BaseService;
 import com.xy.web3jwallet.service.TransactionService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 import org.web3j.protocol.Web3j;
 import org.web3j.protocol.core.Request;
@@ -76,7 +77,7 @@ public class TransactionServiceImpl implements TransactionService {
      */
 
     @Override
-    @Scheduled(cron = "0/10 * * * * MON-SAT")
+    //@Scheduled(cron = "0/10 * * * * MON-SAT")
     //暂定每10秒
     public void ScheduledSendTransaction() {
         Web3j web3j = baseService.initWeb3j();

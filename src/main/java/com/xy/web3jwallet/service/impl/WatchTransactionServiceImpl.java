@@ -38,26 +38,4 @@ public class WatchTransactionServiceImpl implements WatchTransactionService {
         }
         return ethBlock.getBlock();
     }
-
-    /**
-     * 轮询过滤器的日志
-     *
-     * @return
-     */
-    @Override
-    //@Scheduled(cron = "0/5 * * * * MON-SAT")
-    public EthLog ScheduledCheckFilterLog() {
-        Web3j web3j = baseService.initWeb3j();
-        EthLog ethLog = new EthLog();
-
-        EthFilter ethFilter = new EthFilter(DefaultBlockParameterName.EARLIEST, DefaultBlockParameterName.LATEST, "0x59eb99d9f6fa5d3d2229effcb811ac574708248d");
-        Request<?, EthLog> request = web3j.ethGetLogs(ethFilter);
-        try {
-            ethLog = request.send();
-            System.out.println(ethLog.getLogs());
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        return ethLog;
-    }
 }

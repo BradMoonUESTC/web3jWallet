@@ -12,12 +12,6 @@ public interface WatchTransactionService {
      */
     EthBlock.Block ScheduledCheckBlock();
 
-    /**
-     * 轮询过滤器的日志
-     *
-     * @return
-     */
-    EthLog ScheduledCheckFilterLog();
 }
 
 
