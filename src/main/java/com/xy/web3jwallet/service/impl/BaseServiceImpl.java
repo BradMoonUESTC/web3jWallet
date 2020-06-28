@@ -11,7 +11,7 @@ import org.web3j.protocol.http.HttpService;
 public class BaseServiceImpl implements BaseService {
 
     //@Value("${baseservice.url}")
-    private static String URL = "http://127.0.0.1:8545";
+    private static final String URL = "http://127.0.0.1:8545";
 
 
     /**
@@ -47,7 +47,7 @@ public class BaseServiceImpl implements BaseService {
     /**
      * 通过http连接到geth节点
      *
-     * @return
+     * @return httpservice
      */
     @Override
     public HttpService getService() {

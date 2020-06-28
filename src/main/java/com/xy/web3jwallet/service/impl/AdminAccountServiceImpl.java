@@ -23,7 +23,7 @@ public class AdminAccountServiceImpl implements AdminAccountService {
     /**
      * 获取gasprice
      *
-     * @return
+     * @return gasprice
      */
     @Override
     public BigInteger getGasPrice() {
@@ -42,7 +42,7 @@ public class AdminAccountServiceImpl implements AdminAccountService {
     /**
      * 获取所有账户列表
      *
-     * @return
+     * @return 账户列表
      */
     @Override
     public List<String> getEthAccounts() {
@@ -54,7 +54,7 @@ public class AdminAccountServiceImpl implements AdminAccountService {
         try {
             result = request.sendAsync().get();//异步请求
         } catch (Exception e) {
-            System.out.println(e);
+            e.printStackTrace();
         }
 
         return result.getAccounts();
@@ -63,8 +63,8 @@ public class AdminAccountServiceImpl implements AdminAccountService {
     /**
      * 创建新账户
      *
-     * @param _password_
-     * @return
+     * @param _password_ 账户密码
+     * @return 账户地址
      */
     @Override
     public String newAccount(String _password_) {

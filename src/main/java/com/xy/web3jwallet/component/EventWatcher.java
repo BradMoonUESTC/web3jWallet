@@ -55,7 +55,6 @@ public class EventWatcher implements ApplicationRunner {
             System.out.println(eventValues.getNonIndexedValues().get(1));
 
         });
-
         //单纯的以log订阅事件
         /**
          web3j.ethLogFlowable(ethFilter).subscribe(event->{
