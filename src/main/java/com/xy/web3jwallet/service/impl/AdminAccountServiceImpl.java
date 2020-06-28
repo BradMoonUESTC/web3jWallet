@@ -14,6 +14,9 @@ import org.web3j.protocol.core.methods.response.EthGasPrice;
 import java.math.BigInteger;
 import java.util.List;
 
+/**
+ * @author Nerbonic
+ */
 @Service
 public class AdminAccountServiceImpl implements AdminAccountService {
 
@@ -52,7 +55,8 @@ public class AdminAccountServiceImpl implements AdminAccountService {
         Request<?, EthAccounts> request = web3j.ethAccounts();
 
         try {
-            result = request.sendAsync().get();//异步请求
+            //异步请求
+            result = request.sendAsync().get();
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -63,14 +67,14 @@ public class AdminAccountServiceImpl implements AdminAccountService {
     /**
      * 创建新账户
      *
-     * @param _password_ 账户密码
+     * @param password 账户密码
      * @return 账户地址
      */
     @Override
-    public String newAccount(String _password_) {
+    public String newAccount(String password) {
         Admin admin = baseService.initAdmin();
 
-        Request<?, NewAccountIdentifier> request = admin.personalNewAccount(_password_);
+        Request<?, NewAccountIdentifier> request = admin.personalNewAccount(password);
         NewAccountIdentifier result = new NewAccountIdentifier();
         try {
             result = request.send();

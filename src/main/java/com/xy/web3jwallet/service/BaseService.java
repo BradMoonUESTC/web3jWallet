@@ -6,6 +6,9 @@ import org.web3j.protocol.geth.Geth;
 import org.web3j.protocol.http.HttpService;
 
 
+/**
+ * @author Nerbonic
+ */
 public interface BaseService {
 
     /**

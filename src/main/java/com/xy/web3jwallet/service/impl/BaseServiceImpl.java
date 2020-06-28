@@ -7,10 +7,12 @@ import org.web3j.protocol.admin.Admin;
 import org.web3j.protocol.geth.Geth;
 import org.web3j.protocol.http.HttpService;
 
+/**
+ * @author Nerbonic
+ */
 @Service
 public class BaseServiceImpl implements BaseService {
 
-    //@Value("${baseservice.url}")
     private static final String URL = "http://127.0.0.1:8545";
 
 

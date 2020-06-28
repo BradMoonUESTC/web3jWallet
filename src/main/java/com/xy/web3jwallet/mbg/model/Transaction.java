@@ -2,6 +2,9 @@ package com.xy.web3jwallet.mbg.model;
 
 import java.math.BigInteger;
 
+/**
+ * @author Nerbonic
+ */
 public class Transaction {
     private String from;
     private String to;

@@ -30,33 +30,33 @@ public class TransactionServiceImpl implements TransactionService {
     /**
      * 发送转账事务
      *
-     * @param _transaction_
+     * @param transaction
      * @return transaction的hash值
      */
     @Override
-    public String ethSendTransaction(Transaction _transaction_) {
+    public EthSendTransaction ethSendTransaction(Transaction transaction) {
         Web3j web3j = baseService.initWeb3j();
-        String transactionHash = "0x0000000000000000000000000000000000000000000000000000000000000000";
-        Request<?, EthSendTransaction> request = web3j.ethSendTransaction(_transaction_);
+        EthSendTransaction ethSendTransaction = new EthSendTransaction();
+        Request<?, EthSendTransaction> request = web3j.ethSendTransaction(transaction);
         try {
-            transactionHash = request.send().getTransactionHash();
-        } catch (IOException e) {
+            ethSendTransaction = request.sendAsync().get();
+        } catch (Exception e) {
             e.printStackTrace();
         }
-        return transactionHash;
+        return ethSendTransaction;
     }
 
     /**
      * 通过hashcode获取transaction相关信息
      *
-     * @param _hashcode_
+     * @param hashcode
      * @return
      */
     @Override
-    public EthTransaction getTransactionByHash(String _hashcode_) {
+    public EthTransaction getTransactionByHash(String hashcode) {
         Web3j web3j = baseService.initWeb3j();
         EthTransaction ethTransaction = new EthTransaction();
-        Request<?, EthTransaction> request = web3j.ethGetTransactionByHash(_hashcode_);
+        Request<?, EthTransaction> request = web3j.ethGetTransactionByHash(hashcode);
         try {
             ethTransaction = request.sendAsync().get();
         } catch (Exception e) {
@@ -78,14 +78,13 @@ public class TransactionServiceImpl implements TransactionService {
 
     @Override
     //@Scheduled(cron = "0/10 * * * * MON-SAT")
-    //暂定每10秒
-    public void ScheduledSendTransaction() {
+    public void scheduledSendTransaction() {
         Web3j web3j = baseService.initWeb3j();
         List<String> accounts = adminAccountService.getEthAccounts();
         Random r = new Random(1000);
-        Integer value = r.nextInt(10);//随机金额
-        Integer value_test2 = r.nextInt(20);
-        String transactionHash = "0x0000000000000000000000000000000000000000000000000000000000000000";
+        //随机金额
+        Integer value = r.nextInt(10);
+        Integer valueTest2 = r.nextInt(20);
 
         Transaction transaction = new Transaction(accounts.get(0),
                 null,
@@ -96,7 +95,7 @@ public class TransactionServiceImpl implements TransactionService {
                         value.toString(),
                         Convert.Unit.ETHER))),
                 null);
-        Request<?, EthSendTransaction> request_test1 = web3j.ethSendTransaction(transaction);
+        Request<?, EthSendTransaction> requestTest1 = web3j.ethSendTransaction(transaction);
 
         transaction = new Transaction(accounts.get(0),
                 null,
@@ -104,14 +103,14 @@ public class TransactionServiceImpl implements TransactionService {
                 null,
                 accounts.get(2),
                 new BigInteger(String.valueOf(Convert.toWei(
-                        value_test2.toString(),
+                        valueTest2.toString(),
                         Convert.Unit.ETHER))),
                 null);
-        Request<?, EthSendTransaction> request_test2 = web3j.ethSendTransaction(transaction);
+        Request<?, EthSendTransaction> requestTest2 = web3j.ethSendTransaction(transaction);
 
         try {
-            request_test1.send();
-            request_test2.send();
+            requestTest1.send();
+            requestTest2.send();
         } catch (IOException e) {
             e.printStackTrace();
         }

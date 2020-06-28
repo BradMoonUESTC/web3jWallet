@@ -4,6 +4,7 @@ package com.xy.web3jwallet.common;
  * 通用返回对象
  * fork from http://www.macrozheng.com.
  * 2020-6
+ * @author Nerbonic
  */
 public class CommonResult<T> {
     private long code;

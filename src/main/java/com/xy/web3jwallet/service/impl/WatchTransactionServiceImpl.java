@@ -15,6 +15,7 @@ public class WatchTransactionServiceImpl implements WatchTransactionService {
     @Autowired
     BaseService baseService;
 
+
     /**
      * 一种监视方法：轮询最新块的交易或其他信息
      *
@@ -22,8 +23,7 @@ public class WatchTransactionServiceImpl implements WatchTransactionService {
      */
     @Override
     @Scheduled(cron = "0/5 * * * * MON-SAT")
-    //每隔5秒轮询一次最新块
-    public EthBlock.Block ScheduledCheckBlock() {
+    public EthBlock.Block scheduledCheckBlock() {
         Web3j web3j = baseService.initWeb3j();
         EthBlock ethBlock;
         EthBlock.Block block = null;

@@ -3,6 +3,9 @@ package com.xy.web3jwallet.service;
 import java.math.BigInteger;
 import java.util.List;
 
+/**
+ * @author Nerbonic
+ */
 public interface AdminAccountService {
 
     /**
@@ -15,10 +18,10 @@ public interface AdminAccountService {
     /**
      * 创建新账户
      *
-     * @param _password_
+     * @param password
      * @return
      */
-    String newAccount(String _password_);
+    String newAccount(String password);
 
     /**
      * 获取gasprice

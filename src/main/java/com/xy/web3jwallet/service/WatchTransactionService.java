@@ -3,6 +3,9 @@ package com.xy.web3jwallet.service;
 
 import org.web3j.protocol.core.methods.response.EthBlock;
 
+/**
+ * @author Nerbonic
+ */
 public interface WatchTransactionService {
 
     /**
@@ -10,7 +13,7 @@ public interface WatchTransactionService {
      *
      * @return 区块信息
      */
-    EthBlock.Block ScheduledCheckBlock();
+     EthBlock.Block scheduledCheckBlock();
 
 }
 

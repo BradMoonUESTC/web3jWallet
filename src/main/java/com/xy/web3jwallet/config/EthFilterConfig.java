@@ -21,7 +21,6 @@ public class EthFilterConfig {
     @Bean
     @Scope("prototype")
     public EthFilter ethFilter() throws IOException {
-        Web3j web3j = baseService.initWeb3j();
         return new EthFilter(DefaultBlockParameterName.EARLIEST,
                 DefaultBlockParameterName.LATEST, "0x39e03b156b4ea519464e5eeb9bebec78b1f0a54b");
     }
