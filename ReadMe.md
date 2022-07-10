@@ -1,14 +1,8 @@
-##项目结构
+##struct
 ###v0.1
-
-common——通用返回码工具
-
-component——监测器组件
-
-config——eth过滤器组件
-
-controller——控制器
-
-mbg.model——自有类
-
-service——服务
+Common -- general return code tool
+Component - monitor component
+Config -- eth filter component
+Controller - controller
+mbg. Model - self owned class
+Service - Service
